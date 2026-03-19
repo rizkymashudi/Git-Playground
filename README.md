@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Git Playground
+
+An interactive web-based learning environment for mastering Git commands, branching strategies, and real-world industry workflows.
+
+## Features
+
+- **Interactive Terminal** — Simulated Git terminal with 20+ commands, command history (arrow keys), and `&&` chaining
+- **Live Branch Graph** — Real-time SVG visualization that updates on every repo state change
+- **23 Guided Scenarios** — Step-by-step lessons across 5 categories: Fundamentals, Collaboration, Advanced Ops, Rescue & Recovery, Industry Workflows
+- **12 Workflow Diagrams** — Visual branch diagrams for GitFlow, GitHub Flow, Trunk-Based, Forking, Stacked PRs, and more
+- **Quick Reference** — Click-to-copy cheat sheet for common Git commands
+- **Dark/Light Theme** — Full theme system with smooth transitions
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Framework | Next.js 14 (App Router) |
+| Language | TypeScript (strict mode) |
+| Styling | Tailwind CSS v3 |
+| Animation | Framer Motion |
+| Fonts | IBM Plex Mono + DM Sans (next/font) |
+| Testing | Vitest + React Testing Library |
+| CI | GitHub Actions |
+| Deployment | Static export (Vercel/Netlify/Cloudflare Pages) |
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Clone the repository
+git clone https://github.com/rizkymashudi/Git-Playground.git
+cd Git-Playground
+
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Production build (static export) |
+| `npm run lint` | Run ESLint |
+| `npm run format` | Format with Prettier |
+| `npm run format:check` | Check formatting |
+| `npm test` | Run unit tests |
+| `npm run test:watch` | Run tests in watch mode |
 
-## Learn More
+## Supported Git Commands
 
-To learn more about Next.js, take a look at the following resources:
+`init` `add` `commit` `status` `log` `branch` `checkout` `switch` `merge` `rebase` `stash` `tag` `remote` `push` `pull` `fetch` `reset` `cherry-pick` `diff` `reflog` `help`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Shell commands: `touch` `clear` `help`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+```
+src/
+├── app/                    # Next.js App Router (layout, page, styles)
+├── components/
+│   ├── graph/              # Branch graph SVG visualization
+│   ├── layout/             # Header, Footer
+│   ├── reference/          # Cheat sheet
+│   ├── scenarios/          # Scenario list, progress, hints
+│   ├── terminal/           # Terminal, input, line renderer
+│   ├── ui/                 # Theme toggle
+│   └── workflows/          # Workflow diagrams, cards, comparison
+├── data/                   # Scenarios, workflows, cheat sheet data
+├── hooks/                  # useGitTerminal, useCommandHistory, useScenario
+├── lib/
+│   ├── git-engine/         # Pure Git simulation engine
+│   │   ├── commands/       # One file per command group
+│   │   ├── engine.ts       # Command dispatcher
+│   │   ├── types.ts        # Repository, Commit, GitResult
+│   │   └── index.ts        # Public API
+│   └── theme.ts            # Theme tokens
+└── types/                  # Shared TypeScript interfaces
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
