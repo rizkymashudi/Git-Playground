@@ -62,15 +62,12 @@ export function useGitTerminal() {
     [history, repo, cmdHistory],
   );
 
-  const resetTerminal = useCallback(
-    (entries?: TerminalEntry[]) => {
-      const freshRepo = createRepo();
-      setRepo(freshRepo);
-      setHistory(entries || [WELCOME]);
-      setInput('');
-    },
-    [],
-  );
+  const resetTerminal = useCallback((entries?: TerminalEntry[]) => {
+    const freshRepo = createRepo();
+    setRepo(freshRepo);
+    setHistory(entries || [WELCOME]);
+    setInput('');
+  }, []);
 
   const handleHistoryUp = useCallback(() => {
     const prev = cmdHistory.up();

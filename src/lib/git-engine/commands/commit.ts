@@ -9,7 +9,13 @@ export function gitCommit(repo: Repository, args: string[]): GitResult {
   }
 
   const msgIdx = args.indexOf('-m');
-  const msg = msgIdx >= 0 ? args.slice(msgIdx + 1).join(' ').replace(/['"]/g, '') : 'commit';
+  const msg =
+    msgIdx >= 0
+      ? args
+          .slice(msgIdx + 1)
+          .join(' ')
+          .replace(/['"]/g, '')
+      : 'commit';
   const hash = randomHash();
   const parent = r.branches[r.HEAD];
 

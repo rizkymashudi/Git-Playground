@@ -6,8 +6,10 @@ export function gitMerge(repo: Repository, args: string[]): GitResult {
   const source = args[0];
 
   if (!source) return { repo: r, output: 'error: specify branch to merge', success: false };
-  if (!r.branches[source]) return { repo: r, output: `merge: ${source} - not something we can merge`, success: false };
-  if (r.branches[source] === r.branches[r.HEAD]) return { repo: r, output: 'Already up to date.', success: true };
+  if (!r.branches[source])
+    return { repo: r, output: `merge: ${source} - not something we can merge`, success: false };
+  if (r.branches[source] === r.branches[r.HEAD])
+    return { repo: r, output: 'Already up to date.', success: true };
 
   const hash = randomHash();
   r.commits.push({
@@ -20,5 +22,9 @@ export function gitMerge(repo: Repository, args: string[]): GitResult {
   });
   r.branches[r.HEAD] = hash;
 
-  return { repo: r, output: `Merge made by the 'ort' strategy.\nMerge commit: ${hash}`, success: true };
+  return {
+    repo: r,
+    output: `Merge made by the 'ort' strategy.\nMerge commit: ${hash}`,
+    success: true,
+  };
 }

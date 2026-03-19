@@ -87,7 +87,15 @@ export default function BranchGraph({ commits, branches, HEAD, tags, theme: t }:
               opacity={isCurrent ? 1 : 0.8}
             />
             {isCurrent && (
-              <circle cx={x} cy={y} r={12} fill="none" stroke={col} strokeWidth="1.5" opacity="0.4" />
+              <circle
+                cx={x}
+                cy={y}
+                r={12}
+                fill="none"
+                stroke={col}
+                strokeWidth="1.5"
+                opacity="0.4"
+              />
             )}
             <text x={x + 20} y={y + 4} fill={t.textMuted} fontSize="11" fontFamily={MONO}>
               {c.hash}

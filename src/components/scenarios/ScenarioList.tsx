@@ -8,7 +8,13 @@ const MONO = "'IBM Plex Mono', 'Fira Code', monospace";
 const SANS = "'DM Sans', 'Segoe UI', sans-serif";
 
 function diffKey(d: Difficulty): string {
-  return d === 'Beginner' ? 'beginner' : d === 'Intermediate' ? 'intermediate' : d === 'Advanced' ? 'advanced' : 'expert';
+  return d === 'Beginner'
+    ? 'beginner'
+    : d === 'Intermediate'
+      ? 'intermediate'
+      : d === 'Advanced'
+        ? 'advanced'
+        : 'expert';
 }
 
 interface ScenarioListProps {
@@ -51,7 +57,9 @@ export default function ScenarioList({ categories, onStartScenario, theme: t }: 
             >
               <span style={{ color: cat.color, fontSize: 18 }}>{cat.icon}</span>
               {cat.title}
-              <span style={{ color: t.textMuted, fontSize: 12, fontFamily: MONO, marginLeft: 'auto' }}>
+              <span
+                style={{ color: t.textMuted, fontSize: 12, fontFamily: MONO, marginLeft: 'auto' }}
+              >
                 {cat.scenarios.length} scenarios {activeCategory === cat.id ? '\u25BE' : '\u25B8'}
               </span>
             </button>
@@ -109,7 +117,14 @@ export default function ScenarioList({ categories, onStartScenario, theme: t }: 
                         {s.difficulty}
                       </span>
                     </div>
-                    <div style={{ fontSize: 12, color: t.textSecondary, lineHeight: 1.5, marginBottom: 8 }}>
+                    <div
+                      style={{
+                        fontSize: 12,
+                        color: t.textSecondary,
+                        lineHeight: 1.5,
+                        marginBottom: 8,
+                      }}
+                    >
                       {s.description}
                     </div>
                     <div style={{ fontSize: 10, color: t.textMuted, fontFamily: MONO }}>

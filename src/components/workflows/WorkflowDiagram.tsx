@@ -36,11 +36,25 @@ export default function WorkflowDiagram({ wf, theme: t }: WorkflowDiagramProps) 
             opacity="0.35"
             strokeLinecap="round"
           />
-          <text x={12} y={cy(bi) + 4} fill={b.color} fontSize="10" fontFamily={MONO} fontWeight="600">
+          <text
+            x={12}
+            y={cy(bi) + 4}
+            fill={b.color}
+            fontSize="10"
+            fontFamily={MONO}
+            fontWeight="600"
+          >
             {b.name}
           </text>
           {b.commits.map((ci) => (
-            <circle key={`${b.name}-${ci}`} cx={cx(ci)} cy={cy(bi)} r={5} fill={b.color} opacity="0.9" />
+            <circle
+              key={`${b.name}-${ci}`}
+              cx={cx(ci)}
+              cy={cy(bi)}
+              r={5}
+              fill={b.color}
+              opacity="0.9"
+            />
           ))}
           {b.from && (
             <path

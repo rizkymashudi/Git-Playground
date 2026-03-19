@@ -12,7 +12,8 @@ export function gitCheckout(repo: Repository, args: string[]): GitResult {
   }
 
   const name = args[0];
-  if (!r.branches[name]) return { repo: r, output: `error: pathspec '${name}' did not match`, success: false };
+  if (!r.branches[name])
+    return { repo: r, output: `error: pathspec '${name}' did not match`, success: false };
   r.HEAD = name;
   return { repo: r, output: `Switched to branch '${name}'`, success: true };
 }
@@ -29,7 +30,8 @@ export function gitSwitch(repo: Repository, args: string[]): GitResult {
   }
 
   const name = args[0];
-  if (!r.branches[name]) return { repo: r, output: `error: invalid reference: ${name}`, success: false };
+  if (!r.branches[name])
+    return { repo: r, output: `error: invalid reference: ${name}`, success: false };
   r.HEAD = name;
   return { repo: r, output: `Switched to branch '${name}'`, success: true };
 }

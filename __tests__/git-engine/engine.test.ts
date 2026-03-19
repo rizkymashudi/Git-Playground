@@ -27,7 +27,7 @@ describe('executeGitCommand dispatcher', () => {
   it('dispatches git commit', () => {
     const repo = createRepo();
     repo.staged = ['file.txt'];
-    const result = executeGitCommand(repo, "git commit -m test");
+    const result = executeGitCommand(repo, 'git commit -m test');
     expect(result.success).toBe(true);
     expect(result.repo.commits).toHaveLength(2);
   });

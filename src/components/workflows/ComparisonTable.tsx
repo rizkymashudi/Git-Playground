@@ -39,7 +39,9 @@ export default function ComparisonTable({ theme: t }: ComparisonTableProps) {
         <span style={{ fontSize: 14, fontWeight: 700, color: t.text }}>Quick Comparison</span>
       </div>
       <div style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 11, fontFamily: MONO }}>
+        <table
+          style={{ width: '100%', borderCollapse: 'collapse', fontSize: 11, fontFamily: MONO }}
+        >
           <thead>
             <tr style={{ borderBottom: `1px solid ${t.border}` }}>
               {['Workflow', 'Complexity', 'CI/CD Fit', 'Team Size', 'Release Cadence'].map((h) => (
@@ -71,7 +73,12 @@ export default function ComparisonTable({ theme: t }: ComparisonTableProps) {
                 <td
                   style={{
                     padding: '8px 14px',
-                    color: row.cx === 'Low' ? t.success : row.cx === 'High' ? t.warning : t.textSecondary,
+                    color:
+                      row.cx === 'Low'
+                        ? t.success
+                        : row.cx === 'High'
+                          ? t.warning
+                          : t.textSecondary,
                   }}
                 >
                   {row.cx}
@@ -79,7 +86,11 @@ export default function ComparisonTable({ theme: t }: ComparisonTableProps) {
                 <td
                   style={{
                     padding: '8px 14px',
-                    color: row.ci.includes('High') ? t.success : row.ci === 'Low' ? t.error : t.textSecondary,
+                    color: row.ci.includes('High')
+                      ? t.success
+                      : row.ci === 'Low'
+                        ? t.error
+                        : t.textSecondary,
                   }}
                 >
                   {row.ci}

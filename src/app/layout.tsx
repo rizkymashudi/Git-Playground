@@ -22,7 +22,8 @@ export const metadata: Metadata = {
     'Master Git commands, branching strategies, and real-world industry workflows with an interactive terminal and live branch visualization.',
   openGraph: {
     title: 'Git Playground',
-    description: 'Interactive Git learning environment with guided scenarios and visual branch diagrams.',
+    description:
+      'Interactive Git learning environment with guided scenarios and visual branch diagrams.',
     type: 'website',
   },
 };

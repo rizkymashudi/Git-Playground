@@ -5,7 +5,7 @@ export function gitDiff(repo: Repository): GitResult {
 
   if (r.staged.length || r.workingDir.length) {
     const files = [...r.staged, ...r.workingDir];
-    const out = `diff --git\n${files.map(f => `+++ b/${f}\n@@ -0,0 +1 @@\n+<file content>`).join('\n')}`;
+    const out = `diff --git\n${files.map((f) => `+++ b/${f}\n@@ -0,0 +1 @@\n+<file content>`).join('\n')}`;
     return { repo: r, output: out, success: true };
   }
 

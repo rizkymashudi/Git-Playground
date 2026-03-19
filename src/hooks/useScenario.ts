@@ -11,7 +11,7 @@ export function useScenario() {
   const [showHint, setShowHint] = useState(false);
 
   const currentScenario = activeScenario
-    ? CATEGORIES.flatMap((c) => c.scenarios).find((s) => s.id === activeScenario) ?? null
+    ? (CATEGORIES.flatMap((c) => c.scenarios).find((s) => s.id === activeScenario) ?? null)
     : null;
 
   const currentStep = currentScenario?.steps[stepIndex] ?? null;

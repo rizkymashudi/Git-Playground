@@ -13,15 +13,15 @@ An interactive web-based learning environment for mastering Git commands, branch
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Framework | Next.js 14 (App Router) |
-| Language | TypeScript (strict mode) |
-| Styling | Tailwind CSS v3 |
-| Animation | Framer Motion |
-| Fonts | IBM Plex Mono + DM Sans (next/font) |
-| Testing | Vitest + React Testing Library |
-| CI | GitHub Actions |
+| Layer      | Technology                                      |
+| ---------- | ----------------------------------------------- |
+| Framework  | Next.js 14 (App Router)                         |
+| Language   | TypeScript (strict mode)                        |
+| Styling    | Tailwind CSS v3                                 |
+| Animation  | Framer Motion                                   |
+| Fonts      | IBM Plex Mono + DM Sans (next/font)             |
+| Testing    | Vitest + React Testing Library                  |
+| CI         | GitHub Actions                                  |
 | Deployment | Static export (Vercel/Netlify/Cloudflare Pages) |
 
 ## Getting Started
@@ -42,15 +42,15 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Production build (static export) |
-| `npm run lint` | Run ESLint |
-| `npm run format` | Format with Prettier |
-| `npm run format:check` | Check formatting |
-| `npm test` | Run unit tests |
-| `npm run test:watch` | Run tests in watch mode |
+| Command                | Description                      |
+| ---------------------- | -------------------------------- |
+| `npm run dev`          | Start development server         |
+| `npm run build`        | Production build (static export) |
+| `npm run lint`         | Run ESLint                       |
+| `npm run format`       | Format with Prettier             |
+| `npm run format:check` | Check formatting                 |
+| `npm test`             | Run unit tests                   |
+| `npm run test:watch`   | Run tests in watch mode          |
 
 ## Supported Git Commands
 
