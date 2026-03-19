@@ -1,36 +1,73 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Claude Code / AI Tools
+.claude/
+.claude_memory/
+.claude-context
+.claude-project
+.clauderc
+.claude.json
+.claude_output/
+CLAUDE.md
+AGENTS.md
+.cursorrules
+.cursor/
+.aider*
+.continue/
+.copilot/
+.github/copilot/
 
-# dependencies
-/node_modules
-/.pnp
+# MCP (Model Context Protocol)
+.mcp/
+.mcp.json
+mcp.json
+mcp-config.json
+.mcp-servers/
+
+# Dependencies
+node_modules/
+.pnp
 .pnp.js
 .yarn/install-state.gz
 
-# testing
-/coverage
+# Build & Output
+.next/
+out/
+build/
+dist/
+*.tsbuildinfo
+next-env.d.ts
 
-# next.js
-/.next/
-/out/
+# Testing & Coverage
+coverage/
+*.lcov
+.nyc_output/
 
-# production
-/build
+# Environment & Secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# misc
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
 .DS_Store
-*.pem
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
 
-# debug
+# Misc
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# local env files
-.env*.local
-
-# vercel
 .vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
