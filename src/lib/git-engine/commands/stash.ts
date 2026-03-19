@@ -14,7 +14,11 @@ export function gitStash(repo: Repository, args: string[]): GitResult {
     });
     r.staged = [];
     r.workingDir = [];
-    return { repo: r, output: `Saved working directory and index state: ${r.stash[r.stash.length - 1].msg}`, success: true };
+    return {
+      repo: r,
+      output: `Saved working directory and index state: ${r.stash[r.stash.length - 1].msg}`,
+      success: true,
+    };
   }
 
   if (args[0] === 'pop') {
@@ -27,7 +31,11 @@ export function gitStash(repo: Repository, args: string[]): GitResult {
 
   if (args[0] === 'list') {
     if (r.stash.length === 0) return { repo: r, output: 'No stash entries.', success: true };
-    return { repo: r, output: r.stash.map((s, i) => `stash@{${i}}: ${s.msg}`).join('\n'), success: true };
+    return {
+      repo: r,
+      output: r.stash.map((s, i) => `stash@{${i}}: ${s.msg}`).join('\n'),
+      success: true,
+    };
   }
 
   return { repo: r, output: `Unknown stash command: ${args[0]}`, success: false };

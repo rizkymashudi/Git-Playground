@@ -6,7 +6,8 @@ export function gitRebase(repo: Repository, args: string[]): GitResult {
   const target = args[0];
 
   if (!target) return { repo: r, output: 'error: specify upstream branch', success: false };
-  if (!r.branches[target]) return { repo: r, output: `fatal: invalid upstream '${target}'`, success: false };
+  if (!r.branches[target])
+    return { repo: r, output: `fatal: invalid upstream '${target}'`, success: false };
 
   const hash = randomHash();
   r.commits.push({
@@ -18,5 +19,9 @@ export function gitRebase(repo: Repository, args: string[]): GitResult {
   });
   r.branches[r.HEAD] = hash;
 
-  return { repo: r, output: `Successfully rebased and updated refs/heads/${r.HEAD}.`, success: true };
+  return {
+    repo: r,
+    output: `Successfully rebased and updated refs/heads/${r.HEAD}.`,
+    success: true,
+  };
 }

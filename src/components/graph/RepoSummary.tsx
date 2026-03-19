@@ -45,7 +45,9 @@ export default function RepoSummary({ repo, theme: t }: RepoSummaryProps) {
           <div style={{ marginTop: 6, color: t.success }}>Staged: {repo.staged.join(', ')}</div>
         )}
         {repo.workingDir.length > 0 && (
-          <div style={{ marginTop: 4, color: t.error }}>Untracked: {repo.workingDir.join(', ')}</div>
+          <div style={{ marginTop: 4, color: t.error }}>
+            Untracked: {repo.workingDir.join(', ')}
+          </div>
         )}
       </div>
     </div>

@@ -22,7 +22,13 @@ export function randomHash(): string {
 export function createRepo(): Repository {
   return {
     commits: [
-      { hash: 'a1b2c3d', msg: 'Initial commit', branch: 'main', parent: null, timestamp: Date.now() },
+      {
+        hash: 'a1b2c3d',
+        msg: 'Initial commit',
+        branch: 'main',
+        parent: null,
+        timestamp: Date.now(),
+      },
     ],
     branches: { main: 'a1b2c3d' },
     HEAD: 'main',
@@ -38,8 +44,10 @@ export function createRepo(): Repository {
 function gitStatus(repo: Repository): GitResult {
   const r = structuredClone(repo);
   let out = `On branch ${r.HEAD}\n`;
-  if (r.staged.length) out += `\nChanges to be committed:\n${r.staged.map(f => `  new file: ${f}`).join('\n')}\n`;
-  if (r.workingDir.length) out += `\nUntracked files:\n${r.workingDir.map(f => `  ${f}`).join('\n')}\n`;
+  if (r.staged.length)
+    out += `\nChanges to be committed:\n${r.staged.map((f) => `  new file: ${f}`).join('\n')}\n`;
+  if (r.workingDir.length)
+    out += `\nUntracked files:\n${r.workingDir.map((f) => `  ${f}`).join('\n')}\n`;
   if (!r.staged.length && !r.workingDir.length) out += '\nnothing to commit, working tree clean';
   return { repo: r, output: out, success: true };
 }
@@ -49,7 +57,11 @@ export function executeGitCommand(repo: Repository, input: string): GitResult {
   const parts = input.trim().split(/\s+/);
 
   if (parts[0] !== 'git') {
-    return { repo: r, output: `Command not found: ${parts[0]}. Try 'git <command>'`, success: false };
+    return {
+      repo: r,
+      output: `Command not found: ${parts[0]}. Try 'git <command>'`,
+      success: false,
+    };
   }
 
   const cmd = parts[1];
@@ -99,7 +111,11 @@ export function executeGitCommand(repo: Repository, input: string): GitResult {
     case 'help':
       return gitHelp(r);
     default:
-      return { repo: r, output: `git: '${cmd}' is not a git command. See 'git help'.`, success: false };
+      return {
+        repo: r,
+        output: `git: '${cmd}' is not a git command. See 'git help'.`,
+        success: false,
+      };
   }
 }
 

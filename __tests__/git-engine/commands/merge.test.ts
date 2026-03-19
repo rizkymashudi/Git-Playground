@@ -18,7 +18,9 @@ describe('git merge', () => {
     const result = gitMerge(repo, ['feature']);
     expect(result.success).toBe(true);
     expect(result.output).toContain('Merge made');
-    expect(result.repo.commits[result.repo.commits.length - 1].msg).toContain("Merge branch 'feature'");
+    expect(result.repo.commits[result.repo.commits.length - 1].msg).toContain(
+      "Merge branch 'feature'",
+    );
     expect(result.repo.commits[result.repo.commits.length - 1].mergeParent).toBe(featureHash);
   });
 

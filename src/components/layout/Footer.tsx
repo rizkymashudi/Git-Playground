@@ -25,7 +25,9 @@ export default function Footer({ repo, theme: t }: FooterProps) {
         flexShrink: 0,
       }}
     >
-      <span>&#8593;&#8595; history &middot; enter to run &middot; type &apos;git help&apos; for commands</span>
+      <span>
+        &#8593;&#8595; history &middot; enter to run &middot; type &apos;git help&apos; for commands
+      </span>
       <span>
         {repo.commits.length} commits &middot; {Object.keys(repo.branches).length} branches
       </span>

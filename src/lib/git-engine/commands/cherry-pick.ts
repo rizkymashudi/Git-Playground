@@ -5,7 +5,7 @@ export function gitCherryPick(repo: Repository, args: string[]): GitResult {
   const r = structuredClone(repo);
   const target = args[0];
 
-  const found = r.commits.find(c => c.hash.startsWith(target));
+  const found = r.commits.find((c) => c.hash.startsWith(target));
   if (!found) return { repo: r, output: `fatal: bad object ${target}`, success: false };
 
   const hash = randomHash();
@@ -19,5 +19,9 @@ export function gitCherryPick(repo: Repository, args: string[]): GitResult {
   });
   r.branches[r.HEAD] = hash;
 
-  return { repo: r, output: `[${r.HEAD} ${hash}] ${found.msg}\nCherry-picked from ${found.hash}`, success: true };
+  return {
+    repo: r,
+    output: `[${r.HEAD} ${hash}] ${found.msg}\nCherry-picked from ${found.hash}`,
+    success: true,
+  };
 }

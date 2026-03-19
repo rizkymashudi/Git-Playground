@@ -11,7 +11,7 @@ export function gitAdd(repo: Repository, args: string[]): GitResult {
 
   const file = args[0] || 'file.txt';
   if (r.workingDir.includes(file)) {
-    r.workingDir = r.workingDir.filter(f => f !== file);
+    r.workingDir = r.workingDir.filter((f) => f !== file);
     r.staged.push(file);
   } else {
     r.staged.push(file);

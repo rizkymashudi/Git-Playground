@@ -6,7 +6,7 @@ export function gitRemote(repo: Repository, args: string[]): GitResult {
 
   if (args[0] === '-v' || !args.length) {
     const out = Object.keys(r.remotes)
-      .map(name => `${name}\t<url> (fetch)\n${name}\t<url> (push)`)
+      .map((name) => `${name}\t<url> (fetch)\n${name}\t<url> (push)`)
       .join('\n');
     return { repo: r, output: out, success: true };
   }

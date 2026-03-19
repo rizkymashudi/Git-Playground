@@ -4,7 +4,13 @@ export interface CheatSheetSection {
 }
 
 export const CHEAT_SHEET: CheatSheetSection[] = [
-  { cat: 'Setup', cmds: [['git init', 'New repo'], ['git clone <url>', 'Clone remote']] },
+  {
+    cat: 'Setup',
+    cmds: [
+      ['git init', 'New repo'],
+      ['git clone <url>', 'Clone remote'],
+    ],
+  },
   {
     cat: 'Changes',
     cmds: [

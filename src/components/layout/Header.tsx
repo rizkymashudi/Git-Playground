@@ -53,7 +53,9 @@ export default function Header({ view, onViewChange, mode, onToggleTheme, theme:
           G
         </div>
         <div>
-          <div style={{ fontSize: 16, fontWeight: 700, letterSpacing: '-0.02em' }}>Git Playground</div>
+          <div style={{ fontSize: 16, fontWeight: 700, letterSpacing: '-0.02em' }}>
+            Git Playground
+          </div>
           <div style={{ fontSize: 11, color: t.textMuted, fontFamily: MONO }}>
             interactive learning environment
           </div>

@@ -92,18 +92,15 @@ export default function GitPlayground() {
     [runCommand, checkStep, setHistory],
   );
 
-  const handleViewChange = useCallback(
-    (v: ViewId) => {
-      setView(v);
-      if (v === 'terminal') setTimeout(() => inputRef.current?.focus(), 50);
-    },
-    [],
-  );
+  const handleViewChange = useCallback((v: ViewId) => {
+    setView(v);
+    if (v === 'terminal') setTimeout(() => inputRef.current?.focus(), 50);
+  }, []);
 
   return (
     <div
       style={{
-        minHeight: '100vh',
+        height: '100vh',
         background: t.bg,
         color: t.text,
         fontFamily: "'DM Sans', 'Segoe UI', sans-serif",
@@ -122,11 +119,7 @@ export default function GitPlayground() {
 
       <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
         {view === 'scenarios' && (
-          <ScenarioList
-            categories={CATEGORIES}
-            onStartScenario={handleStartScenario}
-            theme={t}
-          />
+          <ScenarioList categories={CATEGORIES} onStartScenario={handleStartScenario} theme={t} />
         )}
 
         {view === 'terminal' && (
@@ -151,7 +144,9 @@ export default function GitPlayground() {
             )}
 
             <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
-              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+              <div
+                style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}
+              >
                 <Terminal
                   history={history}
                   input={input}

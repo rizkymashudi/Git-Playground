@@ -46,10 +46,14 @@ export default function WorkflowCard({ wf, scenario, onTryIt, theme: t, mode }: 
                 boxShadow: `0 0 8px ${wf.color}40`,
               }}
             />
-            <span style={{ fontSize: 17, fontWeight: 700, color: t.text, letterSpacing: '-0.02em' }}>
+            <span
+              style={{ fontSize: 17, fontWeight: 700, color: t.text, letterSpacing: '-0.02em' }}
+            >
               {wf.name}
             </span>
-            <span style={{ fontSize: 11, color: t.textMuted, fontFamily: MONO }}>{wf.subtitle}</span>
+            <span style={{ fontSize: 11, color: t.textMuted, fontFamily: MONO }}>
+              {wf.subtitle}
+            </span>
           </div>
           <div style={{ fontSize: 12, color: t.textSecondary, marginLeft: 20 }}>
             <span style={{ color: t.textMuted }}>Best for: </span>
@@ -97,7 +101,15 @@ export default function WorkflowCard({ wf, scenario, onTryIt, theme: t, mode }: 
 
       <div style={{ padding: '12px 20px 16px', display: 'flex', gap: 24, flexWrap: 'wrap' }}>
         <div style={{ flex: 1, minWidth: 200 }}>
-          <div style={{ fontSize: 10, fontFamily: MONO, color: t.success, fontWeight: 600, marginBottom: 6 }}>
+          <div
+            style={{
+              fontSize: 10,
+              fontFamily: MONO,
+              color: t.success,
+              fontWeight: 600,
+              marginBottom: 6,
+            }}
+          >
             ADVANTAGES
           </div>
           {wf.pros.map((p, i) => (
@@ -108,7 +120,15 @@ export default function WorkflowCard({ wf, scenario, onTryIt, theme: t, mode }: 
           ))}
         </div>
         <div style={{ flex: 1, minWidth: 200 }}>
-          <div style={{ fontSize: 10, fontFamily: MONO, color: t.error, fontWeight: 600, marginBottom: 6 }}>
+          <div
+            style={{
+              fontSize: 10,
+              fontFamily: MONO,
+              color: t.error,
+              fontWeight: 600,
+              marginBottom: 6,
+            }}
+          >
             TRADE-OFFS
           </div>
           {wf.cons.map((c, i) => (

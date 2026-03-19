@@ -10,7 +10,11 @@ export function gitReset(repo: Repository, args: string[]): GitResult {
   }
 
   if (args[0] === '--soft') {
-    return { repo: r, output: `HEAD is now at ${r.branches[r.HEAD]} (staged changes preserved)`, success: true };
+    return {
+      repo: r,
+      output: `HEAD is now at ${r.branches[r.HEAD]} (staged changes preserved)`,
+      success: true,
+    };
   }
 
   r.staged = [];

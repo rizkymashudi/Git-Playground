@@ -13,7 +13,13 @@ interface HintBarProps {
   theme: Theme;
 }
 
-export default function HintBar({ step, stepIndex, showHint, onToggleHint, theme: t }: HintBarProps) {
+export default function HintBar({
+  step,
+  stepIndex,
+  showHint,
+  onToggleHint,
+  theme: t,
+}: HintBarProps) {
   return (
     <>
       <div
