@@ -103,7 +103,7 @@ export default function GitPlayground() {
   return (
     <div
       style={{
-        minHeight: '100vh',
+        height: '100vh',
         background: t.bg,
         color: t.text,
         fontFamily: "'DM Sans', 'Segoe UI', sans-serif",
