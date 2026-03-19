@@ -48,7 +48,6 @@ export default function GitPlayground() {
 
   const {
     repo,
-    setRepo,
     history,
     setHistory,
     input,

@@ -1,4 +1,4 @@
-import type { Repository, GitResult } from '../types';
+import type { GitResult } from '../types';
 import { createRepo } from '../engine';
 
 export function gitInit(): GitResult {

@@ -5,7 +5,7 @@ export type Difficulty = 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
 export interface Step {
   instruction: string;
   hint: string;
-  check: (repo: Repository) => boolean;
+  check: (repo: Repository) => unknown;
 }
 
 export interface Scenario {

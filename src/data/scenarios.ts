@@ -28,7 +28,7 @@ export const CATEGORIES: Category[] = [
         industry: "Any",
         description: "Create branches and switch between them — the foundation of parallel development.",
         steps: [
-          { instruction: "Create a new branch called 'feature'", hint: "git branch feature", check: (r: Repository) => r.branches["feature"] },
+          { instruction: "Create a new branch called 'feature'", hint: "git branch feature", check: (r: Repository) => !!r.branches["feature"] },
           { instruction: "Switch to the 'feature' branch", hint: "git checkout feature", check: (r: Repository) => r.HEAD === "feature" },
           { instruction: "Create and stage a file 'feature.js'", hint: "touch feature.js && git add feature.js", check: (r: Repository) => r.staged.includes("feature.js") },
           { instruction: "Commit your feature work", hint: "git commit -m 'Add feature'", check: (r: Repository) => r.commits.some(c => c.branch === "feature" && c.msg !== "Initial commit") },
@@ -68,7 +68,7 @@ export const CATEGORIES: Category[] = [
           { instruction: "Add login.jsx and commit", hint: "touch login.jsx && git add . && git commit -m 'Add login page'", check: (r: Repository) => r.commits.some(c => c.branch === "feature/login-page") },
           { instruction: "Switch back to main", hint: "git checkout main", check: (r: Repository) => r.HEAD === "main" },
           { instruction: "Merge the feature branch into main", hint: "git merge feature/login-page", check: (r: Repository) => r.commits.some(c => c.msg.includes("Merge")) },
-          { instruction: "Push to remote", hint: "git push origin main", check: (r: Repository) => r.remotes.origin?.main },
+          { instruction: "Push to remote", hint: "git push origin main", check: (r: Repository) => !!r.remotes.origin?.main },
         ],
       },
       {
@@ -80,7 +80,7 @@ export const CATEGORIES: Category[] = [
         steps: [
           { instruction: "Create branch 'fix/auth-bug-2341'", hint: "git checkout -b fix/auth-bug-2341", check: (r: Repository) => r.HEAD === "fix/auth-bug-2341" },
           { instruction: "Create fix file and commit", hint: "touch auth-fix.swift && git add . && git commit -m 'Fix auth token refresh'", check: (r: Repository) => r.commits.some(c => c.branch === "fix/auth-bug-2341") },
-          { instruction: "Push the branch to origin for PR", hint: "git push origin fix/auth-bug-2341", check: (r: Repository) => r.remotes.origin?.["fix/auth-bug-2341"] },
+          { instruction: "Push the branch to origin for PR", hint: "git push origin fix/auth-bug-2341", check: (r: Repository) => !!r.remotes.origin?.["fix/auth-bug-2341"] },
           { instruction: "Switch to main and merge (simulating PR approval)", hint: "git checkout main && git merge fix/auth-bug-2341", check: (r: Repository) => r.HEAD === "main" && r.commits.some(c => c.msg.includes("Merge")) },
           { instruction: "Clean up: delete the feature branch", hint: "git branch -d fix/auth-bug-2341", check: (r: Repository) => !r.branches["fix/auth-bug-2341"] },
         ],
@@ -128,7 +128,7 @@ export const CATEGORIES: Category[] = [
         industry: "Mobile Apps / Release Mgmt",
         description: "Apply a specific commit from one branch to another — essential for hotfix workflows.",
         steps: [
-          { instruction: "Create 'develop' branch with a new commit", hint: "git checkout -b develop && touch api.kt && git add . && git commit -m 'New API endpoint'", check: (r: Repository) => r.branches.develop },
+          { instruction: "Create 'develop' branch with a new commit", hint: "git checkout -b develop && touch api.kt && git add . && git commit -m 'New API endpoint'", check: (r: Repository) => !!r.branches.develop },
           { instruction: "Add another commit (the hotfix we want)", hint: "touch hotfix.kt && git add . && git commit -m 'Critical security patch'", check: (r: Repository) => r.commits.some(c => c.msg.toLowerCase().includes("security") || c.msg.toLowerCase().includes("patch")) },
           { instruction: "Switch to main (production)", hint: "git checkout main", check: (r: Repository) => r.HEAD === "main" },
           { instruction: "Cherry-pick ONLY the security patch commit (use its hash from 'git log --oneline' on develop)", hint: "git log --oneline (to find hash), then git cherry-pick <hash>", check: (r: Repository) => r.commits.some(c => c.cherryPicked) },
@@ -198,7 +198,7 @@ export const CATEGORIES: Category[] = [
         industry: "Enterprise / Regulated",
         description: "The classic structured workflow: main, develop, feature/*, release/*, and hotfix/* branches.",
         steps: [
-          { instruction: "Create the 'develop' integration branch", hint: "git branch develop", check: (r: Repository) => r.branches.develop },
+          { instruction: "Create the 'develop' integration branch", hint: "git branch develop", check: (r: Repository) => !!r.branches.develop },
           { instruction: "Switch to develop and create feature branch", hint: "git checkout develop && git checkout -b feature/user-auth", check: (r: Repository) => r.HEAD === "feature/user-auth" },
           { instruction: "Build the feature: add auth.swift and commit", hint: "touch auth.swift && git add . && git commit -m 'Implement user auth'", check: (r: Repository) => r.commits.some(c => c.branch === "feature/user-auth") },
           { instruction: "Merge feature back to develop", hint: "git checkout develop && git merge feature/user-auth", check: (r: Repository) => r.HEAD === "develop" && r.commits.some(c => c.msg.includes("Merge") && c.branch === "develop") },
@@ -216,9 +216,9 @@ export const CATEGORIES: Category[] = [
         steps: [
           { instruction: "Create feature branch from main", hint: "git checkout -b feature/dark-mode", check: (r: Repository) => r.HEAD === "feature/dark-mode" },
           { instruction: "Add your changes and commit", hint: "touch dark-mode.tsx && git add . && git commit -m 'Add dark mode toggle'", check: (r: Repository) => r.commits.some(c => c.branch === "feature/dark-mode") },
-          { instruction: "Push branch to remote (opens PR)", hint: "git push origin feature/dark-mode", check: (r: Repository) => r.remotes.origin?.["feature/dark-mode"] },
+          { instruction: "Push branch to remote (opens PR)", hint: "git push origin feature/dark-mode", check: (r: Repository) => !!r.remotes.origin?.["feature/dark-mode"] },
           { instruction: "Switch to main and merge (PR approved!)", hint: "git checkout main && git merge feature/dark-mode", check: (r: Repository) => r.HEAD === "main" && r.commits.some(c => c.msg.includes("Merge")) },
-          { instruction: "Deploy: push main to origin", hint: "git push origin main", check: (r: Repository) => r.remotes.origin?.main },
+          { instruction: "Deploy: push main to origin", hint: "git push origin main", check: (r: Repository) => !!r.remotes.origin?.main },
           { instruction: "Clean up: delete feature branch", hint: "git branch -d feature/dark-mode", check: (r: Repository) => !r.branches["feature/dark-mode"] },
         ],
       },
@@ -229,7 +229,7 @@ export const CATEGORIES: Category[] = [
         industry: "DevOps / Staging Envs",
         description: "GitHub Flow + environment branches. Code flows: feature → main → staging → production.",
         steps: [
-          { instruction: "Create environment branches", hint: "git branch staging && git branch production", check: (r: Repository) => r.branches.staging && r.branches.production },
+          { instruction: "Create environment branches", hint: "git branch staging && git branch production", check: (r: Repository) => !!r.branches.staging && !!r.branches.production },
           { instruction: "Create a feature branch and work on it", hint: "git checkout -b feature/notifications && touch notif.py && git add . && git commit -m 'Add push notifications'", check: (r: Repository) => r.commits.some(c => c.branch === "feature/notifications") },
           { instruction: "Merge feature into main", hint: "git checkout main && git merge feature/notifications", check: (r: Repository) => r.HEAD === "main" && r.commits.some(c => c.msg.includes("Merge")) },
           { instruction: "Promote main to staging for QA", hint: "git checkout staging && git merge main", check: (r: Repository) => r.HEAD === "staging" },
@@ -243,10 +243,10 @@ export const CATEGORIES: Category[] = [
         industry: "Open Source / OSS",
         description: "Each contributor works on their own fork. Used in Linux, React, Swift, and most GitHub OSS projects.",
         steps: [
-          { instruction: "Simulate fork: add 'upstream' remote", hint: "git remote add upstream", check: (r: Repository) => r.remotes.upstream },
+          { instruction: "Simulate fork: add 'upstream' remote", hint: "git remote add upstream", check: (r: Repository) => !!r.remotes.upstream },
           { instruction: "Create your feature branch", hint: "git checkout -b fix/memory-leak", check: (r: Repository) => r.HEAD === "fix/memory-leak" },
           { instruction: "Make your contribution and commit", hint: "touch leak-fix.c && git add . && git commit -m 'Fix memory leak in parser'", check: (r: Repository) => r.commits.some(c => c.branch === "fix/memory-leak") },
-          { instruction: "Push to YOUR origin (your fork)", hint: "git push origin fix/memory-leak", check: (r: Repository) => r.remotes.origin?.["fix/memory-leak"] },
+          { instruction: "Push to YOUR origin (your fork)", hint: "git push origin fix/memory-leak", check: (r: Repository) => !!r.remotes.origin?.["fix/memory-leak"] },
           { instruction: "Simulate upstream merge: switch to main and merge", hint: "git checkout main && git merge fix/memory-leak", check: (r: Repository) => r.HEAD === "main" },
           { instruction: "Sync with upstream: fetch and pull", hint: "git fetch", check: () => true },
         ],
@@ -273,7 +273,7 @@ export const CATEGORIES: Category[] = [
         industry: "Enterprise / Multi-Env",
         description: "Branches mirror deployment environments: dev → staging → production. Popular in enterprise CI/CD.",
         steps: [
-          { instruction: "Create environment branches: dev, staging, production", hint: "git branch dev && git branch staging && git branch production", check: (r: Repository) => r.branches.dev && r.branches.staging && r.branches.production },
+          { instruction: "Create environment branches: dev, staging, production", hint: "git branch dev && git branch staging && git branch production", check: (r: Repository) => !!r.branches.dev && !!r.branches.staging && !!r.branches.production },
           { instruction: "Work on dev branch", hint: "git checkout dev && touch api-v2.go && git add . && git commit -m 'New API v2 endpoints'", check: (r: Repository) => r.commits.some(c => c.branch === "dev") },
           { instruction: "Promote to staging after dev review", hint: "git checkout staging && git merge dev", check: (r: Repository) => r.HEAD === "staging" },
           { instruction: "Run QA on staging, then promote to production", hint: "git checkout production && git merge staging", check: (r: Repository) => r.HEAD === "production" },
@@ -293,7 +293,7 @@ export const CATEGORIES: Category[] = [
           { instruction: "Immediately merge back to main", hint: "git checkout main && git merge quick-fix", check: (r: Repository) => r.HEAD === "main" },
           { instruction: "Delete the branch (keep it short-lived!)", hint: "git branch -d quick-fix", check: (r: Repository) => !r.branches["quick-fix"] },
           { instruction: "Another quick iteration: branch, commit, merge", hint: "git checkout -b small-tweak && touch tweak.ts && git add . && git commit -m 'Tweak nav spacing' && git checkout main && git merge small-tweak", check: (r: Repository) => r.HEAD === "main" && r.commits.some(c => c.msg.includes("Tweak")) },
-          { instruction: "Push to deploy (trunk is always deployable)", hint: "git push origin main", check: (r: Repository) => r.remotes.origin?.main },
+          { instruction: "Push to deploy (trunk is always deployable)", hint: "git push origin main", check: (r: Repository) => !!r.remotes.origin?.main },
         ],
       },
       {
@@ -308,7 +308,7 @@ export const CATEGORIES: Category[] = [
           { instruction: "SHOW path — merge first, then notify team for async review", hint: "git checkout -b show/refactor-utils && touch utils.ts && git add . && git commit -m 'Refactor utility helpers'", check: (r: Repository) => r.commits.some(c => c.branch === "show/refactor-utils") },
           { instruction: "Merge to main, push (team reviews after)", hint: "git checkout main && git merge show/refactor-utils && git push origin main", check: (r: Repository) => r.HEAD === "main" && r.remotes.origin?.main },
           { instruction: "ASK path — needs discussion, push branch for PR", hint: "git checkout -b ask/new-auth-flow && touch auth-v2.ts && git add . && git commit -m 'Propose new auth flow'", check: (r: Repository) => r.commits.some(c => c.branch === "ask/new-auth-flow") },
-          { instruction: "Push branch for review (don't merge yet!)", hint: "git push origin ask/new-auth-flow", check: (r: Repository) => r.remotes.origin?.["ask/new-auth-flow"] },
+          { instruction: "Push branch for review (don't merge yet!)", hint: "git push origin ask/new-auth-flow", check: (r: Repository) => !!r.remotes.origin?.["ask/new-auth-flow"] },
         ],
       },
       {
@@ -321,7 +321,7 @@ export const CATEGORIES: Category[] = [
           { instruction: "Create branch for a new feature behind a flag", hint: "git checkout -b feature/new-checkout", check: (r: Repository) => r.HEAD === "feature/new-checkout" },
           { instruction: "Add the feature code (disabled by default)", hint: "touch checkout-v2.tsx && git add . && git commit -m 'Add checkout v2 behind feature flag'", check: (r: Repository) => r.commits.some(c => c.branch === "feature/new-checkout" && c.msg.toLowerCase().includes("flag")) },
           { instruction: "Merge to main immediately (flag keeps it hidden)", hint: "git checkout main && git merge feature/new-checkout", check: (r: Repository) => r.HEAD === "main" && r.commits.some(c => c.msg.includes("Merge")) },
-          { instruction: "Deploy main — feature is hidden in production", hint: "git push origin main && git tag deploy-2024-03-15", check: (r: Repository) => r.remotes.origin?.main && Object.keys(r.tags).length > 0 },
+          { instruction: "Deploy main — feature is hidden in production", hint: "git push origin main && git tag deploy-2024-03-15", check: (r: Repository) => !!r.remotes.origin?.main && Object.keys(r.tags).length > 0 },
           { instruction: "Later: enable flag for 10% of users (commit config change)", hint: "touch flag-config.json && git add . && git commit -m 'Enable checkout-v2 for 10% rollout'", check: (r: Repository) => r.commits.some(c => c.msg.toLowerCase().includes("rollout") || c.msg.toLowerCase().includes("enable")) },
           { instruction: "Full rollout: remove the flag", hint: "touch cleanup.ts && git add . && git commit -m 'Remove feature flag, checkout v2 is GA'", check: (r: Repository) => r.commits.some(c => c.msg.toLowerCase().includes("remove") || c.msg.toLowerCase().includes("ga")) },
         ],
@@ -353,7 +353,7 @@ export const CATEGORIES: Category[] = [
           { instruction: "ALERT! Critical bug in production. Branch from the tag", hint: "git checkout -b hotfix/critical-crash", check: (r: Repository) => r.HEAD === "hotfix/critical-crash" },
           { instruction: "Apply the emergency fix", hint: "touch crash-fix.py && git add . && git commit -m 'HOTFIX: Fix null pointer crash on login'", check: (r: Repository) => r.commits.some(c => c.branch === "hotfix/critical-crash" && (c.msg.includes("HOTFIX") || c.msg.includes("hotfix"))) },
           { instruction: "Merge hotfix to main and tag the patch release", hint: "git checkout main && git merge hotfix/critical-crash && git tag v3.0.1", check: (r: Repository) => r.HEAD === "main" && r.tags["v3.0.1"] },
-          { instruction: "Push the fix and deploy immediately", hint: "git push origin main", check: (r: Repository) => r.remotes.origin?.main },
+          { instruction: "Push the fix and deploy immediately", hint: "git push origin main", check: (r: Repository) => !!r.remotes.origin?.main },
           { instruction: "Clean up the hotfix branch", hint: "git branch -d hotfix/critical-crash", check: (r: Repository) => !r.branches["hotfix/critical-crash"] },
         ],
       },
@@ -366,7 +366,7 @@ export const CATEGORIES: Category[] = [
         steps: [
           { instruction: "Create a feature branch scoped to your team's package", hint: "git checkout -b team-ios/sdk-localization", check: (r: Repository) => r.HEAD === "team-ios/sdk-localization" },
           { instruction: "Work on your package only", hint: "touch packages/localization/cache.swift && git add . && git commit -m 'Add memory cache tier to localization SDK'", check: (r: Repository) => r.commits.some(c => c.branch === "team-ios/sdk-localization") },
-          { instruction: "Another team works in parallel on their package", hint: "git checkout main && git checkout -b team-web/dashboard && touch packages/web/dashboard.tsx && git add . && git commit -m 'Revamp analytics dashboard'", check: (r: Repository) => r.branches["team-web/dashboard"] },
+          { instruction: "Another team works in parallel on their package", hint: "git checkout main && git checkout -b team-web/dashboard && touch packages/web/dashboard.tsx && git add . && git commit -m 'Revamp analytics dashboard'", check: (r: Repository) => !!r.branches["team-web/dashboard"] },
           { instruction: "Merge your SDK work to main first", hint: "git checkout main && git merge team-ios/sdk-localization", check: (r: Repository) => r.HEAD === "main" && r.commits.some(c => c.msg.includes("Merge") && c.msg.includes("team-ios")) },
           { instruction: "Then merge the web team's work (no conflicts, different paths)", hint: "git merge team-web/dashboard", check: (r: Repository) => r.commits.filter(c => c.msg.includes("Merge")).length >= 2 },
           { instruction: "Tag a unified release from main", hint: "git tag monorepo-2024.03 && git push origin main", check: (r: Repository) => Object.keys(r.tags).some(t => t.includes("monorepo")) },
